@@ -3,6 +3,9 @@ An error handling system for Lua, with support for GLua.
 
 The primary issue I had with the built-in error handling system was the fact that it didn't support error types. Thus, if you want a single function to be able to have multiple error conditions whilst maintaining the ability to catch each exception individually, you need to resort to string manipulation. To get around this problem, I designed this system with the goal of implementing error types whilst maintaining ease of use. I also added a structure for assertions, such that multiple can be chained together in an easy to use and read fashion.
 
+## Set up
+To set up flow, just load `flow.lua`. A global table named `flow` will be created, and that table will also be returned by the file.
+
 ## Assertions
 I defined an assertion structure. Each assertion item has an associated callback, which takes some data, and returns:
 
