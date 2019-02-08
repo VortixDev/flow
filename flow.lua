@@ -4,12 +4,13 @@ local include = include or dofile;
 flow = {};
 
 flow.assertionFactory = include("assertion_factory.lua");
-flow.assert = include("assertions/base_assert.lua");
-flow.assert.addSubAssertion("isBoolean", include("assertions/boolean.lua"));
-flow.assert.addSubAssertion("isFunction", include("assertions/func.lua"));
-flow.assert.addSubAssertion("isNumber", include("assertions/number.lua"));
-flow.assert.addSubAssertion("isString", include("assertions/string.lua"));
-flow.assert.addSubAssertion("isTable", include("assertions/table.lua"));
+flow.assert = {
+    isBoolean = include("assertions/boolean.lua"),
+    isFunction = include("assertions/func.lua"),
+    isNumber = include("assertions/number.lua"),
+    isString = include("assertions/string.lua"),
+    isTable = include("assertions/table.lua")
+}
 
 -- The table which houses the exception information
 flow.exceptions = {};

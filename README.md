@@ -76,7 +76,7 @@ end
 ```
 The above code will print out `8`: if you change one of the values that `add` is called with to a non-number type, you will get `Error: Number expected, got <type>`.
 
-You can also chain other assertions together. `isString` defines a few sub-assertions by default, such as the `contains` assertion. An example usage of this would be `flow.assert.isString.contains(data, "test")`, which would check that the given data is a string, which contains the text `test`.
+You can also chain assertions together. `isString` defines a few sub-assertions by default, such as the `contains` assertion. An example usage of this would be `flow.assert.isString.contains(data, "test")`, which would check that the given data is a string, which contains the text `test`.
 
 ## Exception types
 By default the following types are defined:
