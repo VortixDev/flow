@@ -74,7 +74,7 @@ function assertionMeta:__call(...)
 	local status, exceptionType, message = self.run(...);
 	
 	if (not status) then
-		flow.throw(exceptionType, message, 1);
+		flow.throw(exceptionType, message, 2);
 	end;
 end;
 
