@@ -92,7 +92,7 @@ function flow.throw(exceptionType, message, level)
         info = flow.getStackInfo(1 + (level or 0))
     });
 
-    error(#flow.exceptions, 0);
+    error("flow:" .. #flow.exceptions .. ": " .. exceptionType .. " - " .. message, 0);
 end;
 
 --[[
@@ -132,14 +132,19 @@ function flow.protectedCall(executer)
     end;
 
     local errorData = callData[2];
+    local exceptionID;
 
-    status.isFlowException = type(errorData) == "number" and errorData >= 1 and errorData <= #flow.exceptions;
+    if (type(errorData) == "string") then
+        exceptionID = errorData:match("^flow:([%d+]):");
+    end;
+
+    status.isFlowException = exceptionID and true or false;
 
     -- The value that was passed into the error function to generate the exception
     status.exceptionHeader = errorData;
 
     if (status.isFlowException) then
-        status.exception = flow.exceptions[errorData];
+        status.exception = flow.exceptions[tonumber(exceptionID)];
     end;
 
     return status;
