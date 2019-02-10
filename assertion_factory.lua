@@ -13,10 +13,10 @@ function assertionFactory.new(callback)
 
 	function assertion.compose(joiningAssertion)
 		local composedAssertion = assertionFactory.new(function(...)
-			local originalStatus, originalMessage = assertion.run(...);
+			local originalStatus, originalType, originalMessage = assertion.run(...);
 
 			if (not originalStatus) then
-				return originalStatus, originalMessage;
+				return originalStatus, originalType, originalMessage;
 			end;
 
 			return joiningAssertion.run(...);
