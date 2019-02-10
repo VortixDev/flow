@@ -4,6 +4,10 @@ local tableAssertion = flow.assertionFactory.new(function(data)
 	return dataType == "table", "TYPE_RESTRICTION_VIOLATION", "Table expected, got " .. dataType;
 end);
 
+tableAssertion.addSubAssertion("hasKey", function(data, key)
+	return data[key] ~= nil, "INDEX_NON_EXISTENT", "Expected a value to be located at index '" .. key .. "', but one was not.";
+end);
+
 tableAssertion.addSubAssertion("hasValueCount", function(data, count)
 	local valueCount = 0;
 

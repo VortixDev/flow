@@ -84,5 +84,6 @@ By default the following types are defined:
   - `TYPE_RESTRICTION_VIOLATION`: This type of exception occurs when data of one type is expected, but another type is received.
   - `SIZE_MISMATCH`: This type of exception occurs when data of one size (or range of sizes) is expected, but data of another size is received.
   - `VALUE_MISMATCH`: This type of exception occurs when the contents of some data is expected to follow some format, but does not. An example of this is the `flow.assert.isString.contains` example shown above, which states that the string is expected to contain a certain value.
-  
+  - `INDEX_NON_EXISTENT`: This type of exception occurs when a non-nil value was expected to be a given table index, but one was not.
+
   Types need not be registered, so you any value is acceptable for the type, with the understanding that the value you choose will be used to specifically catch any exceptions of that kind.
