@@ -20,17 +20,18 @@ flow.exceptions = {};
     stack level, starting at the level of this function and reaching
     up to the last non-nil level.
 ]]
-function flow.getStackInfo(startingLevel)
-	local currentLevel = 1 + (startingLevel or 0);
-	local levelInfo = debug.getinfo(currentLevel, "lnS");
+function flow.getStackInfo(relativeLevel)
+    local level = 1 + (relativeLevel or 0);
+    
+	local levelInfo = debug.getinfo(level, "lnS");
 	local stackInfo = {};
 
 	repeat
 		table.insert(stackInfo, levelInfo);
 
-		currentLevel = currentLevel + 1;
+		level = level + 1;
 
-		levelInfo = debug.getinfo(currentLevel, "lnS");
+		levelInfo = debug.getinfo(level, "lnS");
 	until (levelInfo == nil);
 
 	return stackInfo;
@@ -85,11 +86,13 @@ end;
     Throws an error, and adds noteworthy information to the exceptions
     table.
 ]]
-function flow.throw(exceptionType, message, level)
+function flow.throw(exceptionType, message, relativeLevel)
+    local level = 1 + (relativeLevel or 0);
+    
     table.insert(flow.exceptions, {
         type = exceptionType,
         message = message,
-        info = flow.getStackInfo(1 + (level or 0))
+        info = flow.getStackInfo(level)
     });
 
     error("flow:" .. #flow.exceptions .. ": " .. exceptionType .. " - " .. message, 0);
