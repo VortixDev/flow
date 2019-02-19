@@ -9,7 +9,8 @@ flow.assert = {
     isFunction = include("assertions/func.lua"),
     isNumber = include("assertions/number.lua"),
     isString = include("assertions/string.lua"),
-    isTable = include("assertions/table.lua")
+    isTable = include("assertions/table.lua"),
+    isNil = include("assertions/nil.lua")
 }
 
 -- The table which houses the exception information
