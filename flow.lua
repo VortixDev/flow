@@ -164,6 +164,10 @@ function flow.try(attemptCallback, failureCallback)
         return;
     end;
 
+    if (not failureCallback) then
+        return;
+    end;
+
     failureCallback(status.isFlowException, status.isFlowException and status.exception or status.exceptionHeader);
 end;
 
